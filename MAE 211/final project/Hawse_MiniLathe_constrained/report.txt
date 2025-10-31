@@ -1,0 +1,21 @@
+﻿Report Name: C:\Users\nicho\OneDrive\Documents\MAE 211\final project\hawse_Project_milestone_II\report.txt
+Report Time: 11/29/2023 3:57:25 PM
+Report Options:
+    Part Names
+
+Select Set #1:
+    gear 1.par:1
+    gear 1.par:3
+
+Select Set #2:
+    gear 1.par:4
+    gear 1.par:5
+    gear 1.par:2
+    gear 2.par:1
+
+Interferences:
+    1 of 1
+    gear 1.par:3
+    gear 1.par:4
+
+    1 Interferences Detected
