@@ -1,0 +1,19 @@
+function [x,y,z] = orbitPoints(elements,nuRange)
+%given a set of orbital elements and a true anomaly range this function 
+% returns points on the orbit 
+%   
+
+% orbit of first
+x = zeros(100,1);
+y = zeros(100,1);
+z = zeros(100,1);
+
+for i = 1:1:360
+    elements.nu = nuRange(2)-nu
+    [rtemp,~] = elements2rv(elements,1);
+    x(i+1) = rtemp(1);
+    y(i+1) = rtemp(2);
+    z(i+1) = rtemp(3);
+end
+
+end

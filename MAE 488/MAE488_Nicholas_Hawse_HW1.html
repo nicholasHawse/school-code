@@ -1,0 +1,504 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>MAE488_Nicholas_Hawse_HW1</title>
+<meta name="generator" content="MATLAB 24.1">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2025-01-20">
+<meta name="DC.source" content="MAE488_Nicholas_Hawse_HW1.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<pre class="codeinput">
+<span class="comment">% MAE488_Nicholas_Hawse_HW1</span>
+<span class="comment">% MAE 488 03 Analisis of ANALY ENGINEERING SYSTEMS</span>
+<span class="comment">% Homework 1</span>
+<span class="comment">% Nicholas Hawse</span>
+<span class="comment">% 1/20/2025</span>
+<span class="comment">% This code finds and plots solutions to the problems in HW 1</span>
+
+clear
+clc
+close <span class="string">all</span>
+
+fprintf(<span class="string">'===================================================================\n'</span>)
+fprintf(<span class="string">'MAE 488, Homework # 1, Spring 2025\n'</span>)
+fprintf(<span class="string">'===================================================================\n'</span>)
+fprintf(<span class="string">'\n\n'</span>)
+
+<span class="comment">% =============================================================================</span>
+<span class="comment">% Problem 2</span>
+<span class="comment">% =============================================================================</span>
+<span class="comment">% Plot the function y(x) and its first and second derivitives as a function</span>
+<span class="comment">% of time</span>
+<span class="comment">%</span>
+fprintf(<span class="string">'=============================\n'</span>)
+fprintf(<span class="string">'Problem 2 Part h\n'</span>)
+fprintf(<span class="string">'=============================\n'</span>)
+
+<span class="comment">% Y(t) = A sin( Bt + PHI)</span>
+
+A = 4; <span class="comment">% 4 ft amplitude</span>
+B = pi/2; <span class="comment">% radian frequency</span>
+PHI = 1/2; <span class="comment">% phase offset rad</span>
+time = 0:0.001:10; <span class="comment">% a vector that discatizes time</span>
+
+YOfT = @(t) A*sin(B*t + PHI); <span class="comment">% the function of displacement</span>
+VOfT = @(t) B*A*cos(B*t + PHI); <span class="comment">% the function of velocity</span>
+AOfT = @(t) -B*B*A*cos(B*t + PHI); <span class="comment">% the function of acc.</span>
+
+
+subplot(3,1,1) <span class="comment">% puts a plot in the first of 3 subplots</span>
+y1 = YOfT(time); <span class="comment">% finds the function output as a vector</span>
+plot(time,y1,<span class="string">'r'</span>) <span class="comment">%plots the function in red</span>
+xlabel(<span class="string">'time [s]'</span>) <span class="comment">% lables</span>
+ylabel(<span class="string">'Displacement [ft]'</span>)
+
+title(<span class="string">'MAE 488, Homework 1, Problem 2, Part h'</span>) <span class="comment">%title</span>
+
+subplot(3,1,2)<span class="comment">% puts a plot in the 2 of 3 subplots</span>
+y2 = VOfT(time);<span class="comment">% finds the function output as a vector</span>
+plot(time,y2,<span class="string">'g--'</span>)<span class="comment">%plots the function in green dashes</span>
+xlabel(<span class="string">'time [s]'</span>)
+ylabel(<span class="string">'Velocity [ft/s]'</span>)
+
+subplot(3,1,3)<span class="comment">% puts a plot in the 3 of 3 subplots</span>
+y3 = AOfT(time);<span class="comment">% finds the function output as a vector</span>
+plot(time,y3,<span class="string">'b:'</span>)<span class="comment">%plots the function in blue dots</span>
+xlabel(<span class="string">'time [s]'</span>)
+ylabel(<span class="string">'Acceleration [ft/s^2]'</span>)
+
+<span class="comment">% =============================================================================</span>
+<span class="comment">% Problem 3</span>
+<span class="comment">% =============================================================================</span>
+<span class="comment">% Plot the function y(x) two of its talor approximations</span>
+<span class="comment">%</span>
+fprintf(<span class="string">'=============================\n'</span>)
+fprintf(<span class="string">'Problem 3 Part d\n'</span>)
+fprintf(<span class="string">'=============================\n'</span>)
+
+<span class="comment">% f(x) = sqrt(x)cos(x)</span>
+<span class="comment">% f'(x) = -sqrt(x)sin(x) + 1/2*1/sqrt(x)*cos(x)</span>
+
+FOfX = @(x) sqrt(x).*cos(x); <span class="comment">% the function of x</span>
+
+FPrimeOfX = @(x) -sqrt(x)*sin(x) + 0.5*x^(-0.5)*cos(x); <span class="comment">%the derivative</span>
+
+TaylorOne = @(x) FPrimeOfX(2)*x +(FOfX(2)-2*FPrimeOfX(2)); <span class="comment">% the first order taylor at a = 2</span>
+
+TaylorTwo = @(x) FPrimeOfX(6.36)*x +(FOfX(6.36)-6.36*FPrimeOfX(6.36));<span class="comment">% the first order taylor at a = 6.36</span>
+
+figure(2) <span class="comment">% start a new figure</span>
+
+fplot(FOfX,[0,8],<span class="string">'b'</span>) <span class="comment">% plot the origanal function</span>
+hold <span class="string">on</span>;
+fplot(TaylorOne,[1,3],<span class="string">'m'</span>) <span class="comment">% plot the first talor aprox at a = 2</span>
+
+plot(2,FOfX(2),<span class="string">'r*'</span>) <span class="comment">% plot the point that the taylor comes from</span>
+
+fplot(TaylorTwo,[5.36,7.36],<span class="string">'c'</span>)<span class="comment">% plot the first talor aprox at a = 6.36</span>
+
+plot(6.36,FOfX(6.36),<span class="string">'b*'</span>)<span class="comment">% plot the point that the taylor comes from</span>
+
+title(<span class="string">'MAE 488, Homework 1, Problem 3, Part d'</span>) <span class="comment">%lables</span>
+xlabel(<span class="string">'x'</span>)
+ylabel(<span class="string">'f(x)'</span>)
+ylim([-2.2,3])
+legend(<span class="string">'f(x) = sqrt(x)*cos(x)'</span>,<span class="string">'Linearized f(x) at x = 2'</span><span class="keyword">...</span>
+    ,<span class="string">'The Point (2,1.41)'</span>,<span class="string">'Linearized f(x) at x = 6.36'</span> <span class="keyword">...</span>
+    ,<span class="string">'The Point (6.36,2.5)'</span>,<span class="string">'Location'</span>,<span class="string">'northwest'</span>)
+
+
+<span class="comment">% =============================================================================</span>
+<span class="comment">% Problem 4 part a</span>
+<span class="comment">% =============================================================================</span>
+<span class="comment">% Plot a table on linear exponetial and power axies to see where it is linear</span>
+<span class="comment">%</span>
+
+fprintf(<span class="string">'=============================\n'</span>)
+fprintf(<span class="string">'Problem 4 Part a n'</span>)
+fprintf(<span class="string">'=============================\n'</span>)
+
+ax = [10 14.2 18.4 22.6 26.8 31 35.2];
+ay = [10 22.6 35.2 47.8 60.4 73 85.6];
+
+
+
+figure(3) <span class="comment">% creates a new figure</span>
+
+subplot(3,1,1) <span class="comment">% first of 3 subplots</span>
+plot(ax,ay)
+title(<span class="string">'MAE 488, Homework 1, Problem 4, Part a'</span>)
+ylabel(<span class="string">'y linear'</span>)
+
+subplot(3,1,2) <span class="comment">% first of 3 subplots</span>
+semilogy(ax,ay)
+ylabel(<span class="string">'y exponential'</span>)
+
+subplot(3,1,3) <span class="comment">% first of 3 subplots</span>
+loglog(ax,ay)
+ylabel(<span class="string">'y power'</span>)
+xlabel(<span class="string">'x'</span>)
+
+
+
+
+<span class="comment">% =============================================================================</span>
+<span class="comment">% Problem 4 part b</span>
+<span class="comment">% =============================================================================</span>
+<span class="comment">% Plot a table on linear exponetial and power axies to see where it is linear</span>
+<span class="comment">%</span>
+
+fprintf(<span class="string">'=============================\n'</span>)
+fprintf(<span class="string">'Problem 4 Part b\n'</span>)
+fprintf(<span class="string">'=============================\n'</span>)
+
+
+
+
+bx = [1 1.5 2 2.5 3 3.5 4];
+by = [1.218 4.252 14.84 51.8 180.8 631.1 2202.7];
+
+figure(4)
+
+subplot(3,1,1) <span class="comment">% second of 3 subplots</span>
+plot(bx,by)
+title(<span class="string">'MAE 488, Homework 1, Problem 4, Part b'</span>)
+ylabel(<span class="string">'y linear'</span>)
+
+subplot(3,1,2) <span class="comment">% second of 3 subplots</span>
+semilogy(bx,by)
+ylabel(<span class="string">'y exponential'</span>)
+
+subplot(3,1,3) <span class="comment">% second of 3 subplots</span>
+loglog(bx,by)
+ylabel(<span class="string">'y power'</span>)
+xlabel(<span class="string">'x'</span>)
+
+
+<span class="comment">% =============================================================================</span>
+<span class="comment">% Problem 4 part c</span>
+<span class="comment">% =============================================================================</span>
+<span class="comment">% Plot a table on linear exponetial and power axies to see where it is linear</span>
+<span class="comment">%</span>
+
+fprintf(<span class="string">'=============================\n'</span>)
+fprintf(<span class="string">'Problem 4 Part c\n'</span>)
+fprintf(<span class="string">'=============================\n'</span>)
+
+
+
+cx = [2 5 8 11 14 17 20];
+cy = [0.032 1.25 8.19 29.28 76.83 167 320];
+
+figure(5)
+
+subplot(3,1,1) <span class="comment">% second of 3 subplots</span>
+plot(cx,cy)
+title(<span class="string">'MAE 488, Homework 1, Problem 4, Part c'</span>)
+ylabel(<span class="string">'y linear'</span>)
+
+subplot(3,1,2) <span class="comment">% second of 3 subplots</span>
+semilogy(cx,cy)
+ylabel(<span class="string">'y exponential'</span>)
+
+subplot(3,1,3) <span class="comment">% second of 3 subplots</span>
+loglog(cx,cy)
+ylabel(<span class="string">'y power'</span>)
+xlabel(<span class="string">'x'</span>)
+</pre>
+<pre class="codeoutput">===================================================================
+MAE 488, Homework # 1, Spring 2025
+===================================================================
+
+
+=============================
+Problem 2 Part h
+=============================
+=============================
+Problem 3 Part d
+=============================
+=============================
+Problem 4 Part a n=============================
+=============================
+Problem 4 Part b
+=============================
+=============================
+Problem 4 Part c
+=============================
+</pre>
+<img vspace="5" hspace="5" src="MAE488_Nicholas_Hawse_HW1_01.png" alt=""> <img vspace="5" hspace="5" src="MAE488_Nicholas_Hawse_HW1_02.png" alt=""> <img vspace="5" hspace="5" src="MAE488_Nicholas_Hawse_HW1_03.png" alt=""> <img vspace="5" hspace="5" src="MAE488_Nicholas_Hawse_HW1_04.png" alt=""> <img vspace="5" hspace="5" src="MAE488_Nicholas_Hawse_HW1_05.png" alt=""> <p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2024a</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+% MAE488_Nicholas_Hawse_HW1
+% MAE 488 03 Analisis of ANALY ENGINEERING SYSTEMS
+% Homework 1
+% Nicholas Hawse
+% 1/20/2025
+% This code finds and plots solutions to the problems in HW 1
+
+clear
+clc
+close all
+
+fprintf('===================================================================\n')
+fprintf('MAE 488, Homework # 1, Spring 2025\n')
+fprintf('===================================================================\n')
+fprintf('\n\n')
+
+% =============================================================================
+% Problem 2 
+% =============================================================================
+% Plot the function y(x) and its first and second derivitives as a function
+% of time
+%
+fprintf('=============================\n')
+fprintf('Problem 2 Part h\n')
+fprintf('=============================\n')
+
+% Y(t) = A sin( Bt + PHI)
+
+A = 4; % 4 ft amplitude
+B = pi/2; % radian frequency 
+PHI = 1/2; % phase offset rad
+time = 0:0.001:10; % a vector that discatizes time
+
+YOfT = @(t) A*sin(B*t + PHI); % the function of displacement
+VOfT = @(t) B*A*cos(B*t + PHI); % the function of velocity
+AOfT = @(t) -B*B*A*cos(B*t + PHI); % the function of acc.
+
+
+subplot(3,1,1) % puts a plot in the first of 3 subplots
+y1 = YOfT(time); % finds the function output as a vector
+plot(time,y1,'r') %plots the function in red
+xlabel('time [s]') % lables
+ylabel('Displacement [ft]')
+
+title('MAE 488, Homework 1, Problem 2, Part h') %title
+
+subplot(3,1,2)% puts a plot in the 2 of 3 subplots
+y2 = VOfT(time);% finds the function output as a vector
+plot(time,y2,'gREPLACE_WITH_DASH_DASH')%plots the function in green dashes
+xlabel('time [s]')
+ylabel('Velocity [ft/s]')
+
+subplot(3,1,3)% puts a plot in the 3 of 3 subplots
+y3 = AOfT(time);% finds the function output as a vector
+plot(time,y3,'b:')%plots the function in blue dots
+xlabel('time [s]')
+ylabel('Acceleration [ft/s^2]')
+
+% =============================================================================
+% Problem 3 
+% =============================================================================
+% Plot the function y(x) two of its talor approximations 
+%
+fprintf('=============================\n')
+fprintf('Problem 3 Part d\n')
+fprintf('=============================\n')
+
+% f(x) = sqrt(x)cos(x)
+% f'(x) = -sqrt(x)sin(x) + 1/2*1/sqrt(x)*cos(x)
+
+FOfX = @(x) sqrt(x).*cos(x); % the function of x
+
+FPrimeOfX = @(x) -sqrt(x)*sin(x) + 0.5*x^(-0.5)*cos(x); %the derivative
+
+TaylorOne = @(x) FPrimeOfX(2)*x +(FOfX(2)-2*FPrimeOfX(2)); % the first order taylor at a = 2
+
+TaylorTwo = @(x) FPrimeOfX(6.36)*x +(FOfX(6.36)-6.36*FPrimeOfX(6.36));% the first order taylor at a = 6.36
+
+figure(2) % start a new figure
+
+fplot(FOfX,[0,8],'b') % plot the origanal function
+hold on;
+fplot(TaylorOne,[1,3],'m') % plot the first talor aprox at a = 2
+
+plot(2,FOfX(2),'r*') % plot the point that the taylor comes from
+
+fplot(TaylorTwo,[5.36,7.36],'c')% plot the first talor aprox at a = 6.36
+
+plot(6.36,FOfX(6.36),'b*')% plot the point that the taylor comes from
+
+title('MAE 488, Homework 1, Problem 3, Part d') %lables
+xlabel('x')
+ylabel('f(x)')
+ylim([-2.2,3])
+legend('f(x) = sqrt(x)*cos(x)','Linearized f(x) at x = 2'...
+    ,'The Point (2,1.41)','Linearized f(x) at x = 6.36' ...
+    ,'The Point (6.36,2.5)','Location','northwest')
+
+
+% =============================================================================
+% Problem 4 part a
+% =============================================================================
+% Plot a table on linear exponetial and power axies to see where it is linear 
+%
+
+fprintf('=============================\n')
+fprintf('Problem 4 Part a n')
+fprintf('=============================\n')
+
+ax = [10 14.2 18.4 22.6 26.8 31 35.2];
+ay = [10 22.6 35.2 47.8 60.4 73 85.6];
+
+
+
+figure(3) % creates a new figure 
+
+subplot(3,1,1) % first of 3 subplots
+plot(ax,ay)
+title('MAE 488, Homework 1, Problem 4, Part a')
+ylabel('y linear')
+
+subplot(3,1,2) % first of 3 subplots
+semilogy(ax,ay)
+ylabel('y exponential')
+
+subplot(3,1,3) % first of 3 subplots
+loglog(ax,ay)
+ylabel('y power')
+xlabel('x')
+
+
+
+
+% =============================================================================
+% Problem 4 part b
+% =============================================================================
+% Plot a table on linear exponetial and power axies to see where it is linear 
+%
+
+fprintf('=============================\n')
+fprintf('Problem 4 Part b\n')
+fprintf('=============================\n')
+
+
+
+
+bx = [1 1.5 2 2.5 3 3.5 4];
+by = [1.218 4.252 14.84 51.8 180.8 631.1 2202.7];
+
+figure(4)
+
+subplot(3,1,1) % second of 3 subplots
+plot(bx,by)
+title('MAE 488, Homework 1, Problem 4, Part b')
+ylabel('y linear')
+
+subplot(3,1,2) % second of 3 subplots
+semilogy(bx,by)
+ylabel('y exponential')
+
+subplot(3,1,3) % second of 3 subplots
+loglog(bx,by)
+ylabel('y power')
+xlabel('x')
+
+
+% =============================================================================
+% Problem 4 part c
+% =============================================================================
+% Plot a table on linear exponetial and power axies to see where it is linear 
+%
+
+fprintf('=============================\n')
+fprintf('Problem 4 Part c\n')
+fprintf('=============================\n')
+
+
+
+cx = [2 5 8 11 14 17 20];
+cy = [0.032 1.25 8.19 29.28 76.83 167 320];
+
+figure(5)
+
+subplot(3,1,1) % second of 3 subplots
+plot(cx,cy)
+title('MAE 488, Homework 1, Problem 4, Part c')
+ylabel('y linear')
+
+subplot(3,1,2) % second of 3 subplots
+semilogy(cx,cy)
+ylabel('y exponential')
+
+subplot(3,1,3) % second of 3 subplots
+loglog(cx,cy)
+ylabel('y power')
+xlabel('x')
+##### SOURCE END #####
+-->
+</body>
+</html>

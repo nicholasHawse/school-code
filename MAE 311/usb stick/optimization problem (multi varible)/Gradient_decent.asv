@@ -1,0 +1,29 @@
+
+function [x,y] = Gradient_decent()
+%makes two vectors one just incremented and one random
+%   each 1000 long
+x = 1:1000;
+ y = randn([1 1000]);
+end
+
+p = polyfit(x,y,7);
+
+x1 = linspace(0,100000);
+y1 = polyval(p,x1);
+
+x = -3:0.2:3;
+y = x';
+z = x.^2 .* y.^3;
+
+surf(x,y,z)
+xlabel('x')
+ylabel('y')
+zlabel('z')
+
+[fx,fy] = gradient(f,0.2);
+
+x0 = 1;
+y0 = -2;
+t = (x == x0) & (y == y0);
+indt = find(t);
+f_grad = [fx(indt) fy(indt)]

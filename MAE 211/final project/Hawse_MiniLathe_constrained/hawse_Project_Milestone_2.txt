@@ -1,0 +1,12 @@
+
+The following new relationships are mapped in motion.
+Axial66
+Planar67
+Axial78
+Planar87
+Axial88
+Planar89
+Axial90
+Planar91
+Axial92
+Planar93
